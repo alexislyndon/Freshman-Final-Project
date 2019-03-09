@@ -1,6 +1,8 @@
 import java.util.Random;
 /**
- *This class contains all the elements found in the board; including the snake, food, moving Scissor
+ *This class contains all the elements found in the board
+ *including the snake, food, moving Scissor, and the board array itself.
+ *@author  TJ Libago
  */
 class Linkedstack {
 	Node head;	Node tail; Node badfood;
@@ -11,27 +13,29 @@ class Linkedstack {
 	Linkedstack() { //constructor
 		Random rand = new Random(); 
 		this.counting=1;
-		this.arr=new String[15][15]; //size of the board
+		this.arr=new String[15][15]; //sets size of board
 		Node firstnode= new Node(); 
 		firstnode.x = 0;	firstnode.y = 0; //where the snake starts
 		theendgame=false;
 
 		Node food1 = new Node();
-		food1.x = rand.nextInt(14) + 1;
-		food1.y = rand.nextInt(14) + 1;
+		food1.x = 3; //food will always start 3 spaces to the right from origin
+		food1.y = 0;
 		this.food = food1;
 		head=tail=firstnode;
 
 		Node scissors1 = new Node();
 		scissors1.x = 0;
-		scissors1.y = 7; 
+		scissors1.y = 7; //scissors will spawn from the middle
 		scissors = scissors1;
 
 		Node badfood1 = new Node();
 		badfood = badfood1;
 		reachedlast = false;
 	}
-
+	/**
+	 *
+	 */
 	public void deleteTail() { //for badfood
 		Node temp;
 		for(temp=head;temp.next!=null;temp=temp.next) {
@@ -154,30 +158,34 @@ class Linkedstack {
 			arr[this.badfood.y][this.badfood.x]="8";
 		}
 
-		if(this.counting==3||this.counting==20) {
+		if(this.counting==3||this.counting==20) { //
 			arr[this.scissors.y][this.scissors.x]="@";
 		}
 
-		for(temp=this.head;temp!=null;temp=temp.next) { // snakes 
+		for(temp=this.head;temp!=null;temp=temp.next) { 
 			this.arr[temp.y][temp.x]="S"; //S means snake
 		}
 		arr[this.food.y][this.food.x]="o";	// o means food
 
-
+			//everything before this line fills the array.
+		//after this line prints the array(board)
 		for(i=0; i<15;i++){ 	//prints array
 			for(j=0; j<15;j++) {
 				System.out.print(this.arr[i][j]+ " ");
 			} System.out.println();
 		}
 	}
-
+	/**
+	 *This method creates a (good)food and makes sure it doesn't 
+	 *spawn on spaces that are occupied by other (bad)food and the snake.
+	 */
 	public void Foodgene() {
 		Random rand = new Random();
 		boolean reachedlast = false;		boolean found=false;
 		int randomx= rand.nextInt(14);
 		int randomy= rand.nextInt(14);
 		while(found==false) {
-			if(this.arr[randomy][randomx]!="O"&&this.arr[randomy][randomx]!="8") {
+			if(this.arr[randomy][randomx]!="S"&&this.arr[randomy][randomx]!="8") {
 				this.food.x=randomx;
 				this.food.y=randomy;
 				found = true;
@@ -188,14 +196,17 @@ class Linkedstack {
 			}
 		}
 	}
-
+	/**
+	 *This method creates a badfood and makes sure it doesn't 
+	 *spawn on spaces that are occupied by other food and the snake.
+	 */
 	public void badfoodgene() {
 		Random ran = new Random();
 		boolean found = false;
 		int randomx=ran.nextInt(14);
 		int randomy=ran.nextInt(14);
-		while(found==false) {
-			if(this.arr[randomy][randomx]!="O"&&this.arr[randomy][randomx]!="o") {
+		while(found==false) { 
+			if(this.arr[randomy][randomx]!="S"&&this.arr[randomy][randomx]!="o") {
 				this.badfood.x=randomx;
 				this.badfood.y=randomy;
 				found = true;
@@ -207,17 +218,20 @@ class Linkedstack {
 		}
 
 	}
+	/**
+	 *This method moves the scissors.
+	 */
 	public void movingScissor(){
 		if(reachedlast==false){
 			if(this.scissors.x==14){
 				reachedlast=true;
-			} this.scissors.x =this.scissors.x+1;
-		}
+			} this.scissors.x =this.scissors.x+1; //this moves the scissor to the next square to the right x+1 
+		}						//until it reaches the right border
 
 		if(reachedlast==true){
 			if(this.scissors.x==0){
 				reachedlast=false;
-			}this.scissors.x =this.scissors.x-1;
+			}this.scissors.x =this.scissors.x-1; //this moves the scissor back to the left side
 		}
 	}
 }
