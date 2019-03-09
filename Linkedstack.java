@@ -9,11 +9,11 @@ class Linkedstack {
 	Node scissors; boolean reachedlast;
 	
 	Linkedstack() { //constructor
-		Random rand = new Random();
+		Random rand = new Random(); 
 		this.counting=1;
-		this.arr=new String[15][15];
-		Node firstnode= new Node();
-		firstnode.x = 0;	firstnode.y = 0;
+		this.arr=new String[15][15]; //size of the board
+		Node firstnode= new Node(); 
+		firstnode.x = 0;	firstnode.y = 0; //where the snake starts
 		theendgame=false;
 
 		Node food1 = new Node();
@@ -24,7 +24,7 @@ class Linkedstack {
 
 		Node scissors1 = new Node();
 		scissors1.x = 0;
-		scissors1.y = 7;
+		scissors1.y = 7; 
 		scissors = scissors1;
 
 		Node badfood1 = new Node();
@@ -43,7 +43,7 @@ class Linkedstack {
 		this.tail=temp;
 	}
 
-	public void add() {
+	public void add() { //when eating food
 		Node temp;
 		Node node = new Node();
 		this.tail.next = node;
@@ -89,13 +89,15 @@ class Linkedstack {
 			add();
 			Foodgene();
 			this.counting++; //for bad food to appear when counting%5=0
-		}
-		else if((this.counting%5)==0) {
-			if(this.head.x==this.badfood.x&&this.head.y==this.badfood.y) {//checks if head eats badfood 
-				deleteTail();
-				badfoodgene();
+			
+			if((this.counting%5)==0) {
+				if(this.head.x==this.badfood.x&&this.head.y==this.badfood.y) {//checks if head eats badfood 
+					deleteTail();
+					badfoodgene();
+				}
 			}
 		}
+		
 		if(counting==3){
 			if(this.head.x==this.scissors.x&&this.head.y==this.scissors.y) {
 				System.out.println("Scissors hit your head. Too bad your dead");
