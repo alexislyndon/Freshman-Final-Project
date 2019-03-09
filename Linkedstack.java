@@ -89,16 +89,15 @@ class Linkedstack {
 			add();
 			Foodgene();
 			this.counting++; //for bad food to appear when counting%5=0
-			
-			if((this.counting%5)==0) {
-				if(this.head.x==this.badfood.x&&this.head.y==this.badfood.y) {//checks if head eats badfood 
-					deleteTail();
-					badfoodgene();
-				}
-			}
 		}
 		
-		if(counting==3){
+		if((this.counting%5)==0) {
+			if(this.head.x==this.badfood.x&&this.head.y==this.badfood.y) {//checks if head eats badfood 
+				deleteTail();
+				badfoodgene();
+			}
+		}
+		if(counting%3==0){
 			if(this.head.x==this.scissors.x&&this.head.y==this.scissors.y) {
 				System.out.println("Scissors hit your head. Too bad your dead");
 				update();
