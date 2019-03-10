@@ -21,7 +21,6 @@ public class Linkedstack {
 		this.arr=new String[15][15]; //sets size of board
 		Node firstnode = new Node(); 
 		firstnode.x = 0;	firstnode.y = 0; //where the snake starts
-		//theendgame=false;
 
 		Node food1 = new Node();
 		food1.x = 3; //food will always start 3 spaces to the right from origin
@@ -33,7 +32,7 @@ public class Linkedstack {
 		badfood1.x = 7;
 		badfood1.y = 7;
 		this.badfood = badfood1;
-		//reachedlast = false;
+		
 		this.score=0;
 		this.walls = false;
 	}
@@ -61,7 +60,6 @@ public class Linkedstack {
 	 *This method adds 1 section after tail and sets it as tail.
 	 */
 	public void add() { //when eating food
-		//Node temp;
 		Node node = new Node();
 		this.tail.next = node;
 		this.tail = node;
@@ -77,7 +75,7 @@ public class Linkedstack {
 	 *@see Mytask#Input()
 	 *@param move user input. 
 	 */
-	public boolean Coordinatesmove(char move){
+	public boolean Coordinatesmove(char move){ //this method recycles the last user input provided by the Input() method from class Mytask
 		Node temp;
 		int tempx=head.x;
 		int tempy=head.y;
@@ -267,6 +265,8 @@ public class Linkedstack {
 	}
 	/**
 	 *This method is the Speed selector.
+	 *@param s user input
+	 *@return corresponding refresh rate
 	 */
 	public int Speed(int s) {
 		if(s == 1) {

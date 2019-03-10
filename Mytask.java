@@ -6,23 +6,23 @@ import java.util.*;
 public class Mytask extends Thread {
 	char s;
 	char t;
-	char o;
 	public void run(){
 		Scanner sc = new Scanner(System.in);
 		boolean ex = false;
 
-		while(ex==false) {
+		while(ex==false) { 
+			//System.out.println(Thread.currentThread().getName() +" "+  "this is the thread-0");
 			t = sc.next().charAt(0);
-			if(t=='a' && s=='d'){
+			if(t=='a' && s=='d'){//prevent 180 turns
 				t = 'd';
 			}
-			else if(t=='d' && s=='a'){
+			else if(t=='d' && s=='a'){//prevent 180 turns
 				t = 'a';
 			}
-			else if(t=='w' && s=='s'){
+			else if(t=='w' && s=='s'){//prevent 180 turns
 				t = 's';
 			}
-			else if(t=='s' && s=='w'){
+			else if(t=='s' && s=='w'){//prevent 180 turns
 				t = 'w';
 			}
 			else{ 

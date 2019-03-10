@@ -1,6 +1,9 @@
 import java.util.*;
 /**
- *Main class here!
+ *Console Snake Game written in Java!
+ *@author  Tomas Jubile Libago
+ *@author Alexis Lyndon Galaura
+ *@author Youssef Hisham
  */
 public class Main{
 	/**
@@ -23,16 +26,18 @@ public class Main{
 		System.out.println("WASD for movement \nExample: A+[Enter]");
 		System.out.println("");
 		int s = sc.nextInt();
-		list.speed = list.Speed(s); 
+		list.speed = list.Speed(s); //speed here
 		
 		
-		task.start();
+		task.start(); //executes run() method in class Mytask
+		System.out.println(Thread.currentThread().getName());	
 		boolean getout = false;
 		
 		if(choice==1) {
 			while(getout==false) {
+				//System.out.println(Thread.currentThread().getName() +" " + "THIS IS THE MAIN THREAD");
 				delay(list.speed);
-				getout=list.Mayn(task.Input());     //receives input from the thread passes back boolean
+				getout=list.Mayn(task.Input());   //receives input from the thread passes back boolean
 				System.out.println();
 				//System.out.println(list.speed);
 				
@@ -63,11 +68,11 @@ public class Main{
 	 */
 	public static void delay(int s) {  // gisearch ra nako ning delay
 		try {
-		System.out.println();
-		Thread.sleep(s);
+			System.out.println();
+			Thread.sleep(s);
 		}
 		catch(java.lang.InterruptedException e) {
-        System.out.println(e);
+			System.out.println(e);
 		}
     }
 }
