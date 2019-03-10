@@ -9,9 +9,8 @@ import java.util.Random;
  */
 public class Linkedstack {
 	Node head; Node tail; Node badfood;
-	Node food; int counting; //Node scissors;
-	String[][] arr; int score; boolean walls;
-	//boolean theendgame; boolean reachedlast;
+	Node food; int counting;
+	String[][] arr; int score; boolean walls; int speed;
 	
 	/**
 	 *Zero args constructor sets the size of the board creates food. 
@@ -64,6 +63,9 @@ public class Linkedstack {
 		Node node = new Node();
 		this.tail.next = node;
 		this.tail = node;
+		if(this.speed >= 90){
+			this.speed = speed - 5;
+		}
 	}
 	
 	/**
@@ -263,5 +265,21 @@ public class Linkedstack {
 		}else if(i == 2) {
 			this.walls = true;
 		}
+	}
+	
+	public int Speed(int s) {
+		if(s == 1) {
+			return  600;
+		}
+		else if(s == 2) {
+			return  400;
+		}
+		else if(s == 3) {
+			return  200;
+		}
+		else if(s == 4) {
+			return  90;
+		}
+		return 400;
 	}
 }

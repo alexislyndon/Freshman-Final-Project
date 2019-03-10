@@ -17,14 +17,21 @@ public class Main{
 		System.out.println("2 - Wall mode");
 		int choice=sc.nextInt();
 		list.walls(choice);
+		System.out.println("Select Speed");
+		System.out.println("1 - Basic \n2 - Default\n3 - Fast\n4 - Epileptic");
+		int s = sc.nextInt();
+		list.speed = list.Speed(s);
+		
+		
 		task.start();
 		boolean getout = false;
 		
 		if(choice==1) {
 			while(getout==false) {
-				delay();
+				delay(list.speed);
 				getout=list.Mayn(task.Input());     //receives input from the thread passes back boolean
 				System.out.println();
+				
 			}
 			score=list.Scoring();
 			System.out.println("The length of your tail is: "+score);
@@ -32,9 +39,10 @@ public class Main{
 		else if(choice == 2) {
 			while(getout==false) {
 				try {
-				delay();
+				delay(list.speed);
 				getout=list.Mayn(task.Input());
 				System.out.println();
+				
 				}catch(IndexOutOfBoundsException e){  //end game if mogawas sa array
 					score=list.Scoring();
 					System.out.println("You hit a wall. You lose");
@@ -43,26 +51,15 @@ public class Main{
 				}
 			}
 		}
-		while(getout==false) {
-			try {
-				delay();
-				getout=list.Mayn(task.Input());
-				System.out.println();
-			}
-			catch(IndexOutOfBoundsException e){  //end game if mogawas sa array
-				System.out.println("You hit a wall. You lose");
-				getout=true;
-			}
-		}
 	}
 	/**
-	 *Puts the game thread to sleep every 500ms to simulate the game refreshing.
+	 *Puts the game thread to sleep every 400ms to simulate the game refreshing.
 	 *Without this method, the game would refresh very fast. Each refresh means 1 square traversed by the snake.
 	 */
-	public static void delay() {  // gisearch ra nako ning delay
+	public static void delay(int s) {  // gisearch ra nako ning delay
 		try {
 		System.out.println();
-		Thread.sleep(500);
+		Thread.sleep(s);
 		}
 		catch(java.lang.InterruptedException e) {
         System.out.println(e);
