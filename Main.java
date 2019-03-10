@@ -55,6 +55,7 @@ public class Main{
 	/**
 	 *Puts the game thread to sleep every 400ms to simulate the game refreshing.
 	 *Without this method, the game would refresh very fast. Each refresh means 1 square traversed by the snake.
+	 *@param s user defined then later minus 5ms per good food eaten.
 	 */
 	public static void delay(int s) {  // gisearch ra nako ning delay
 		try {

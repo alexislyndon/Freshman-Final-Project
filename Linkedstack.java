@@ -192,9 +192,8 @@ public class Linkedstack {
 
 		for(temp=this.head;temp!=null;temp=temp.next) { 
 			this.arr[temp.y][temp.x]="S"; //S means snake
-		}this.arr[this.head.y][this.head.x]="H";
-		arr[this.food.y][this.food.x]="o";	// o means food
-
+		}arr[this.food.y][this.food.x]="o";	// o means food
+		this.arr[this.head.y][this.head.x]="H";
 			//everything before this line fills the array.
 		//after this line prints the array(board)
 		System.out.println(". . . . . . . . . . . . . . . ..");
