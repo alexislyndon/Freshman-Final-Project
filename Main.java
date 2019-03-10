@@ -34,7 +34,7 @@ public class Main{
 				delay(list.speed);
 				getout=list.Mayn(task.Input());     //receives input from the thread passes back boolean
 				System.out.println();
-				System.out.println(list.speed);
+				//System.out.println(list.speed);
 				
 			}
 			score=list.Scoring();
