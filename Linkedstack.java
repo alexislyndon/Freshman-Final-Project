@@ -5,10 +5,10 @@ import java.util.Random;
  *@author  TJ Libago
  */
 class Linkedstack {
-	Node head;	Node tail; Node badfood;
-	Node food; int counting;	 boolean theendgame;
-	String[][] arr;
-	Node scissors; boolean reachedlast;
+	Node head; Node tail; Node badfood;
+	Node food; int counting; //Node scissors;
+	String[][] arr; int score; boolean walls;
+	boolean theendgame; //boolean reachedlast;
 	
 	Linkedstack() { //constructor
 		Random rand = new Random(); 
@@ -16,7 +16,7 @@ class Linkedstack {
 		this.arr=new String[15][15]; //sets size of board
 		Node firstnode= new Node(); 
 		firstnode.x = 0;	firstnode.y = 0; //where the snake starts
-		theendgame=false;
+		//theendgame=false;
 
 		Node food1 = new Node();
 		food1.x = 3; //food will always start 3 spaces to the right from origin
@@ -31,35 +31,77 @@ class Linkedstack {
 
 		Node badfood1 = new Node();
 		badfood = badfood1;
-		reachedlast = false;
+		//reachedlast = false;
+		this.score=0;
+		this.walls = false;
 	}
 	/**
 	 *
 	 */
 	public void deleteTail() { //for badfood
 		Node temp;
-		for(temp=head;temp.next!=null;temp=temp.next) {
-			if(temp.next==tail) {
-				break;
-			}
+		if(this.tail==this.head) { //if there's only 1 section of snake left
+			this.tail=null;
+			this.head=null;
 		}
-		temp.next=null;
-		this.tail=temp;
+		else {
+			for(temp=head;temp.next!=null;temp=temp.next) {
+				if(temp.next==tail) {
+					break;
+				}
+			}
+			temp.next=null;
+			this.tail=temp;
+		}
 	}
 
 	public void add() { //when eating food
-		Node temp;
+		//Node temp;
 		Node node = new Node();
 		this.tail.next = node;
 		this.tail = node;
 	}
 	public void Coordinatesmove(char move){
+		
+		if(move=='a') {
+			if((this.head.x-1 == -1) && (this.walls == false)) {
+				this.head.x = 14; //jump to the other side - walls off
+			}
+			else{
+			head.x=head.x-1;
+			}
+		}
+		else if(move=='s') {
+			if((this.head.y+1 == 15) && (this.walls == false)) {
+				this.head.y = 0;//jump to the other side - walls off
+			}
+			else {
+				head.y=head.y+1;
+			}
+		}
+		else if(move=='d') {
+			if((this.head.x+1 == 15) && (this.walls == false)) {
+				this.head.x = 0;//jump to the other side - walls off
+			}
+			else {
+				head.x=head.x+1;
+			}
+		}
 
+		else if(move=='w') {
+			if((this.head.y-1 == -1) && (this.walls == false)) {
+				this.head.y = 14;//jump to the other side - walls off
+			}
+			else {
+				head.y = head.y-1;
+			}
+		}
+		
 		Node temp;
 		int tempx=head.x;
 		int tempy=head.y;
 		int tempx1, tempy2;
-		for(temp=head.next;temp!=null;temp=temp.next) {
+		for(temp = head.next; temp != null; temp = temp.next) {
 			tempx1=temp.x;
 			tempy2=temp.y;
 			temp.x=tempx;
@@ -67,31 +109,28 @@ class Linkedstack {
 			tempx=tempx1;
 			tempy=tempy2;
 		}
-
-		if(move=='a') {
-			head.x=head.x-1;
-		}
-		if(move=='s') {
-			head.y=head.y+1;
-		}
-		if(move=='d') {
-			head.x=head.x+1;
-		}
-
-		if(move=='w') {
-			head.y=head.y-1;
-		}
+		
+		for(temp=head.next;temp!=null;temp=temp.next)  {
+			if(this.head.x==temp.x&&this.head.y==temp.y) {
+				System.out.println("Oops you ate your own tail");
+				System.out.println("u ded. Gym uber");
+				update();
+				return true;
+			}
+		}update();
+		return false;
 	}
 
 	public boolean Mayn(char move) {
 
-		Node temp;
+		//Node temp;
 		if(counting==1) {
-				badfoodgene();
+			badfoodgene();
 		}
-		if(this.head.x==food.x&&this.head.y==food.y) {	//checks if head eats food
+		if(this.head.x == food.x && this.head.y == food.y) {	//checks if head eats food
 			add();
 			Foodgene();
+			this.score++;
 			this.counting++; //for bad food to appear when counting%5=0
 		}
 		
@@ -99,9 +138,14 @@ class Linkedstack {
 			if(this.head.x==this.badfood.x&&this.head.y==this.badfood.y) {//checks if head eats badfood 
 				deleteTail();
 				badfoodgene();
+				this.score--;
+				if(this.head==null&&this.tail==null) {
+					System.out.println("OOps too much badfood can kill you");
+					return true;
+				}
 			}
 		}
-		if(counting%3==0){
+		/*if(counting%3==0){
 			if(this.head.x==this.scissors.x&&this.head.y==this.scissors.y) {
 				System.out.println("Scissors hit your head. Too bad your dead");
 				update();
@@ -117,17 +161,17 @@ class Linkedstack {
 					}
 				}
 			} movingScissor();
-		}
+		}*/
 		Coordinatesmove(move);
-		while(counting==3){
+		/*while(counting==3){
 			if(this.head.x==this.scissors.x&&this.head.y==this.scissors.y){
 				System.out.println("Scissors hit your head. Too bad you're dead");
 				update(); //giutro nako pag update para makita ang last print.
 				return true;
 			} break;
-		}
+		}*/
 
-		for(temp=head.next;temp!=null;temp=temp.next) {  //checks if it bite its own tail
+		/*for(temp=head.next;temp!=null;temp=temp.next) {  //checks if it bite its own tail
 			if(this.head.x==temp.x&&this.head.y==temp.y) {
 				System.out.println("Oops you ate your own tail");
 				System.out.println("u ded. Gym uber");
@@ -135,7 +179,7 @@ class Linkedstack {
 			}
 		}
 		update();
-		return false;
+		return false;*/
 	}
 	
 	public void update() {
@@ -164,7 +208,7 @@ class Linkedstack {
 
 		for(temp=this.head;temp!=null;temp=temp.next) { 
 			this.arr[temp.y][temp.x]="S"; //S means snake
-		}
+		}this.arr[this.head.y][this.head.x]="H";
 		arr[this.food.y][this.food.x]="o";	// o means food
 
 			//everything before this line fills the array.
@@ -185,7 +229,7 @@ class Linkedstack {
 		int randomx= rand.nextInt(14);
 		int randomy= rand.nextInt(14);
 		while(found==false) {
-			if(this.arr[randomy][randomx]!="S"&&this.arr[randomy][randomx]!="8") {
+			if(this.arr[randomy][randomx]!="S" && this.arr[randomy][randomx]!="8" && this.arr[randomy][randomx]!="H") { 
 				this.food.x=randomx;
 				this.food.y=randomy;
 				found = true;
@@ -203,24 +247,24 @@ class Linkedstack {
 	public void badfoodgene() {
 		Random ran = new Random();
 		boolean found = false;
-		int randomx=ran.nextInt(14);
-		int randomy=ran.nextInt(14);
+		int randomx;
+		int randomy;
 		while(found==false) { 
-			if(this.arr[randomy][randomx]!="S"&&this.arr[randomy][randomx]!="o") {
+			randomx=ran.nextInt(14);
+			randomy=ran.nextInt(14);
+			if(this.arr[randomy][randomx]!="S"&&this.arr[randomy][randomx]!="o"&&this.arr[randomy][randomx]!="H") {
 				this.badfood.x=randomx;
 				this.badfood.y=randomy;
 				found = true;
 			}
-			else {
-				randomx=ran.nextInt(14);
-				randomy=ran.nextInt(14);
-			}
 		}
-
+	}
+	public int Scoring() {
+		return this.score;
 	}
 	/**
 	 *This method moves the scissors.
-	 */
+	 
 	public void movingScissor(){
 		if(reachedlast==false){
 			if(this.scissors.x==14){
@@ -233,5 +277,5 @@ class Linkedstack {
 				reachedlast=false;
 			}this.scissors.x =this.scissors.x-1; //this moves the scissor back to the left side
 		}
-	}
+	}*/
 }
