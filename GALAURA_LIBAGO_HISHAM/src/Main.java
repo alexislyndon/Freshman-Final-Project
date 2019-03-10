@@ -18,19 +18,18 @@ public class Main{
 		int score;
 		System.out.println("1 - No walls mode");
 		System.out.println("2 - Wall mode");
-		System.out.println("WASD for movement \nExample: D+[Enter]");
+		System.out.println("WASD for movement \nExample: D+[Enter]\n");
 		int choice=sc.nextInt();
 		list.walls(choice);
-		System.out.println("Select Speed");
+		System.out.println("\nSelect Speed");
 		System.out.println("1 - Basic \n2 - Default\n3 - Fast\n4 - Epileptic");
-		System.out.println("WASD for movement \nExample: A+[Enter]");
+		System.out.println("\nWASD for movement \nExample: A+[Enter]");
 		System.out.println("");
 		int s = sc.nextInt();
 		list.speed = list.Speed(s); //speed here
 		
 		
 		task.start(); //executes run() method in class Mytask
-		System.out.println(Thread.currentThread().getName());	
 		boolean getout = false;
 		
 		if(choice==1) {
