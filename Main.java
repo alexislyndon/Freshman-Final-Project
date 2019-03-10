@@ -23,7 +23,7 @@ public class Main{
 		System.out.println("WASD for movement \nExample: A+[Enter]");
 		System.out.println("");
 		int s = sc.nextInt();
-		list.speed = list.Speed(s);
+		list.speed = list.Speed(s); 
 		
 		
 		task.start();

@@ -30,7 +30,9 @@ public class Linkedstack {
 		head=tail=firstnode;
 
 		Node badfood1 = new Node();
-		badfood = badfood1;
+		badfood1.x = 7;
+		badfood1.y = 7;
+		this.badfood = badfood1;
 		//reachedlast = false;
 		this.score=0;
 		this.walls = false;
@@ -145,9 +147,6 @@ public class Linkedstack {
 	 */
 	public boolean Mayn(char move) {
 
-		if(counting==1) {
-			badfoodgene();
-		}
 		if(this.head.x == food.x && this.head.y == food.y) {	//checks if head eats food
 			add();
 			Foodgene();
@@ -266,7 +265,9 @@ public class Linkedstack {
 			this.walls = true;
 		}
 	}
-	
+	/**
+	 *This method is the Speed selector.
+	 */
 	public int Speed(int s) {
 		if(s == 1) {
 			return  600;
