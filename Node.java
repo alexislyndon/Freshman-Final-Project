@@ -1,5 +1,5 @@
 /**
- * Node class to be used for linking
+ * Node class to be used for linking.
  */
 class Node{
 	

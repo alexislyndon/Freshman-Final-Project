@@ -21,6 +21,6 @@ class Mytask extends Thread {
 	 *This method returns the user's input
 	 */
 	public char Input() {
-	return s;
+		return s;
 	}
 }

@@ -6,10 +6,40 @@ public class Main{
 	 *This method also starts a new thread that handles user input.
 	 */
 	public static void main (String[] args){
+		Scanner sc = new Scanner(System.in);
 		Linkedstack list = new Linkedstack();
 		Mytask task = new Mytask();
+		int score;
+		System.out.println("1 - No walls mode");
+		System.out.println("2 - Wall mode");
+		int choice=sc.nextInt();
+		list.walls(choice);
 		task.start();
 		boolean getout = false;
+		
+		if(choice==1) {
+			while(getout==false) {
+				delay();
+				getout=list.Mayn(task.Input());     //receives input from the thread passes back boolean
+				System.out.println();
+			}
+			score=list.Scoring();
+			System.out.println("The length of your tail is: "+score);
+		}
+		else if(choice == 2) {
+			while(getout==false) {
+				try {
+				delay();
+				getout=list.Mayn(task.Input());
+				System.out.println();
+				}catch(IndexOutOfBoundsException e){  //end game if mogawas sa array
+					score=list.Scoring();
+					System.out.println("You hit a wall. You lose");
+					System.out.println("The length of your tail is: "+score);
+					getout=true;
+				}
+			}
+		}
 		while(getout==false) {
 			try {
 				delay();
@@ -25,7 +55,7 @@ public class Main{
 	/**
 	 *Puts the game thread to sleep
 	 *every 1 second to simulate
-	 *the game refreshing
+	 *the game refreshing every @param Thread.sleep
 	 */
 	public static void delay() {  // gisearch ra nako ning delay
 		try {
