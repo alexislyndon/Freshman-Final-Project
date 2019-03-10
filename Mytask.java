@@ -5,13 +5,29 @@ import java.util.*;
  */
 public class Mytask extends Thread {
 	char s;
+	char t;
+	char o;
 	public void run(){
 		Scanner sc = new Scanner(System.in);
 		boolean ex = false;
 
 		while(ex==false) {
-			s = sc.next().charAt(0);
-
+			t = sc.next().charAt(0);
+			if(t=='a' && s=='d'){
+				t = 'd';
+			}
+			else if(t=='d' && s=='a'){
+				t = 'a';
+			}
+			else if(t=='w' && s=='s'){
+				t = 's';
+			}
+			else if(t=='s' && s=='w'){
+				t = 'w';
+			}
+			else{ 
+				s = t;
+			}
 			if(s=='z'){
 					ex=true;
 			}

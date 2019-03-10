@@ -10,7 +10,7 @@ import java.util.Random;
 public class Linkedstack {
 	Node head; Node tail; Node badfood;
 	Node food; int counting;
-	String[][] arr; int score; boolean walls; int speed;
+	String[][] arr; int score; boolean walls; int speed; char snakedirection;
 	
 	/**
 	 *Zero args constructor sets the size of the board creates food. 
@@ -80,7 +80,7 @@ public class Linkedstack {
 		int tempx=head.x;
 		int tempy=head.y;
 		
-		if(move=='a') {
+		if(move=='a') { //move left
 			if((this.head.x-1 == -1) && (this.walls == false)) {
 				this.head.x = 14; //jump to the other side - walls off
 			}
@@ -88,7 +88,7 @@ public class Linkedstack {
 			head.x=head.x-1;
 			}
 		}
-		else if(move=='s') {
+		else if(move=='s') { //move down
 			if((this.head.y+1 == 15) && (this.walls == false)) {
 				this.head.y = 0;//jump to the other side - walls off
 			}
@@ -96,7 +96,8 @@ public class Linkedstack {
 				head.y=head.y+1;
 			}
 		}
-		else if(move=='d') {
+		else if(move=='d') { //move right
+		
 			if((this.head.x+1 == 15) && (this.walls == false)) {
 				this.head.x = 0;//jump to the other side - walls off
 			}
@@ -105,7 +106,7 @@ public class Linkedstack {
 			}
 		}
 
-		else if(move=='w') {
+		else if(move=='w') { //move up
 			if((this.head.y-1 == -1) && (this.walls == false)) {
 				this.head.y = 14;//jump to the other side - walls off
 			}
