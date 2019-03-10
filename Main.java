@@ -1,5 +1,7 @@
 import java.util.*;
-
+/**
+ *Main class here!
+ */
 public class Main{
 	/**
 	 *This is the main method. Creates new objects of class Linkedstack and Mytask.
@@ -53,9 +55,8 @@ public class Main{
 		}
 	}
 	/**
-	 *Puts the game thread to sleep
-	 *every 1 second to simulate
-	 *the game refreshing every @param Thread.sleep
+	 *Puts the game thread to sleep every 500ms to simulate the game refreshing.
+	 *Without this method, the game would refresh very fast. Each refresh means 1 square traversed by the snake.
 	 */
 	public static void delay() {  // gisearch ra nako ning delay
 		try {
