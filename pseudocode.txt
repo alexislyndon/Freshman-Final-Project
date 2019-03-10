@@ -1,0 +1,17 @@
+addFood, setSnakePOS via Constructor
+
+while(!gameover) {
+	THREAD-1 s = sc.next() 
+	THREAD-0 check if(food eaten)
+				addFood
+	THREAD-0 moveSnake(char s) - head moves one square
+	THREAD-0 moveSnake(char s) - whole body follows
+	THREAD-0 check if(snake is dead)
+				return gameover
+}
+
+sources:
+https://www.tutorialspoint.com/java/java_documentation.htm
+http://www.drjava.org/docs/user/ch10.html
+https://www.baeldung.com/javadoc
+http://mycodefixes.blogspot.com/2012/03/generate-javadoc-through-command-line.html

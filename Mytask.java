@@ -19,7 +19,7 @@ public class Mytask extends Thread {
 	}
 	/**
 	 *This method returns the user's input
-	 *@return user input
+	 *@return {@link Mytask#s s}
 	 */
 	public char Input() {
 		return s;

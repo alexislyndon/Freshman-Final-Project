@@ -6,6 +6,7 @@ public class Main{
 	/**
 	 *This is the main method. Creates new objects of class Linkedstack and Mytask.
 	 *This method also starts a new thread that handles user input.
+	 @param args not used
 	 */
 	public static void main (String[] args){
 		Scanner sc = new Scanner(System.in);

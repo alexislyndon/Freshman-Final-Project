@@ -3,8 +3,9 @@ import java.util.Random;
 /**
  *This class contains all the elements found in the board.
  *Including the snake, food, moving Scissor, and the board array itself.
- *@author  TJ Libago
- *
+ *@author  Tomas Jubile Libago
+ *@author Alexis Lyndon Galaura
+ *@author Youssef Hisham
  */
 public class Linkedstack {
 	Node head; Node tail; Node badfood;
@@ -66,12 +67,11 @@ public class Linkedstack {
 	}
 	
 	/**
-	 *This method takes in user input as a parameter
-	 *and moves the snake head to that direction.
-	 *Makes the whole body follow the head and calls the @method update()
-	 *to print the changes and return @return false (if the snake doesn't try to eat itself).
-	 *@return false snake lives 
-	 *@return	true if snake dies - to break loop on {@linkplain #main() main} method.
+	 *This method take user {@link Mytask#Input() input} as parameter and moves the snake head to that direction.
+	 *The body of the snake follows the head.
+	 *@return boolean if snake dies - to break loop on {@linkplain Main#main(String[] args) main} method.
+	 *@see Mytask#Input()
+	 *@param move user input. 
 	 */
 	public boolean Coordinatesmove(char move){
 		Node temp;
@@ -133,8 +133,12 @@ public class Linkedstack {
 	}
 
 	/**
-	 *Mayn method checks whether foods in the board are eaten and proceeds to add more food and add to score.
+	 *Mayn method checks whether foods in the board are eaten and proceeds to add more food and add to score. 
 	 *It also checks if badfood is eaten and decrease score.
+	 *@see #Foodgene
+	 *@see #badfoodgene
+	 *@param move {@link Mytask#Input() move} user input.
+	 *@return boolean 
 	 */
 	public boolean Mayn(char move) {
 
@@ -165,7 +169,7 @@ public class Linkedstack {
 	 *This method prints everything in the board.
 	 */
 	public void update() {
-		int i,j,k,l;
+		int i,j;
 		Node temp;
 		
 		for(i=0;i<15;i++){ 
@@ -201,11 +205,9 @@ public class Linkedstack {
 		}System.out.println(". . . . . . . . . . . . . . . ..");
 	}
 	/**
-	 *This method creates a (good)food and makes sure it doesn't 
-	 *spawn on spaces that are occupied by other (bad)food and the snake.
-	 *Sets the board array so that 1 square gets the food.
-	 *Makes sure the food doesn't spawn on occupied spaces.
-	 *This method doesn't print anything. @method update() takes care of that. @see update().
+	 *Spawns (good)food.
+	 *@see #badfoodgene()
+	 *Sets food in the board.
 	 */
 	public void Foodgene() {
 		Random rand = new Random();
@@ -223,9 +225,9 @@ public class Linkedstack {
 		}
 	}
 	/**
-	 *This method creates a badfood and makes sure it doesn't 
-	 *spawn on spaces that are occupied by other food and the snake.
-	 *This method doesn't print anything. @method update() takes care of that. @see update().
+	 *Spawns badfood.
+	 *@see #Foodgene()
+	 *Sets badfood in the board.
 	 */
 	public void badfoodgene() {
 		Random ran = new Random();
@@ -244,14 +246,16 @@ public class Linkedstack {
 	}
 	
 	/**
-	 *Just returns the score. @return score
+	 *Gets score.
+	 *@return {@link #score}
 	 */
 	public int Scoring() {
 		return this.score;
 	}
 	
 	/**
-	 *Sets walled or no walls mode. @param i is user input
+	 *Sets game mode - [1] - no walls [2] - walled.
+	 *@param i user input - mode.
 	 */
 	public void walls(int i) {
 		if(i == 1) {
