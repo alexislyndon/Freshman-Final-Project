@@ -1,10 +1,12 @@
 import java.util.Random;
+
 /**
- *This class contains all the elements found in the board
+ *This class contains all the elements found in the board.
  *including the snake, food, moving Scissor, and the board array itself.
  *@author  TJ Libago
+ *
  */
-class Linkedstack {
+public class Linkedstack {
 	Node head; Node tail; Node badfood;
 	Node food; int counting; //Node scissors;
 	String[][] arr; int score; boolean walls;
@@ -23,11 +25,6 @@ class Linkedstack {
 		food1.y = 0;
 		this.food = food1;
 		head=tail=firstnode;
-
-		/*Node scissors1 = new Node();
-		scissors1.x = 0;
-		scissors1.y = 7; //scissors will spawn from the middle
-		scissors = scissors1;*/
 
 		Node badfood1 = new Node();
 		badfood = badfood1;

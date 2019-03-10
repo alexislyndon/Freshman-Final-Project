@@ -3,7 +3,7 @@ import java.util.*;
 /**
  *Class Mytask's purpose is to get user input using multithreading. 
  */
-class Mytask extends Thread {
+public class Mytask extends Thread {
 	char s;
 	public void run(){
 		Scanner sc = new Scanner(System.in);
@@ -19,6 +19,7 @@ class Mytask extends Thread {
 	}
 	/**
 	 *This method returns the user's input
+	 *@return user input
 	 */
 	public char Input() {
 		return s;
